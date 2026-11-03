@@ -1,0 +1,361 @@
+/* Base Styling Rules & Alignment Initialization */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Original Ambient Background Blur Orbs Layer */
+.ambient-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.2;
+  }
+}
+
+.node {
+  position: absolute;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.8) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  border-radius: 50%;
+}
+
+.node-1 {
+  width: 16rem;
+  height: 16rem;
+  top: 3rem;
+  left: -5rem;
+  animation: floatAnimation 8s infinite ease-in-out;
+}
+.node-2 {
+  width: 20rem;
+  height: 20rem;
+  top: 45%;
+  right: -8rem;
+  animation: floatAnimation 12s infinite ease-in-out 2s;
+}
+.node-3 {
+  width: 18rem;
+  height: 18rem;
+  bottom: 5rem;
+  left: 20%;
+  animation: floatAnimation 10s infinite ease-in-out 1s;
+}
+
+/* Main Card Glassmorphic Shell Frame Container */
+main {
+  width: 100%;
+  max-width: 410px;
+  margin: auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 10;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body {
+  width: 100%;
+  background-color: rgba(23, 23, 23, 0.85);
+  border: 1px solid #262626;
+  border-radius: 1.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Profile & Headings Typography Header */
+.brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.logo-box {
+  width: 128px;
+  height: 128px;
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.25);
+}
+
+.logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #22d3ee;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.author {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #a3a3a3;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Interactive Card Profile Action Buttons Layout */
+.button-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+button {
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #06b6d4;
+  color: #0a0a0a;
+  box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.15);
+}
+.btn-primary:hover {
+  background-color: #0891b2;
+}
+
+.btn-secondary {
+  background-color: #262626;
+  color: #e5e5e5;
+  border: 1px solid #404040;
+}
+.btn-secondary:hover {
+  background-color: #3f3f46;
+}
+
+/* Technology Expertise Framework Highlights */
+.tech-section {
+  border-top: 1px solid rgba(38, 38, 38, 0.6);
+  padding-top: 1.25rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #525252;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.badge-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  background-color: #0a0a0a;
+  border: 1px solid #262626;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #d4d4d4;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Symmetrical Badge Neon Status Glowing Dots */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.dot-react {
+  background-color: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee;
+}
+.dot-supabase {
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+.dot-expo {
+  background-color: #a855f7;
+  box-shadow: 0 0 8px #a855f7;
+}
+
+/* Contact Row Lists Navigation Layout */
+.links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem;
+  background-color: rgba(10, 10, 10, 0.6);
+  border: 1px solid #262626;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.contact-row:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  background-color: #0a0a0a;
+}
+
+.row-layout {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* Clean Box Indicators for Links */
+.icon-wrap {
+  width: 45px;
+  height: 36px;
+  background-color: #171717;
+  border: 1px solid #262626;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 0.65rem;
+  color: #a3a3a3;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+.contact-row:hover .icon-wrap {
+  color: #22d3ee;
+}
+
+.link-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  overflow: hidden;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #525252;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #d4d4d4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chevron {
+  font-size: 0.75rem;
+  color: #404040;
+  margin-left: 0.5rem;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+.contact-row:hover .chevron {
+  color: #a3a3a3;
+  transform: translateX(2px);
+}
+
+footer {
+  text-align: center;
+  font-size: 10px;
+  color: #404040;
+  padding: 1.5rem 0;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
