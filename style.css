@@ -1,4 +1,4 @@
-/* Base Styling Rules & Alignment Initialization */
+/* Symmetrical Global Viewport & Reset Initialization Rules */
 * {
   margin: 0;
   padding: 0;
@@ -15,37 +15,42 @@ body {
     "Segoe UI",
     Roboto,
     sans-serif;
-  min-height: 100vh;
+
+  /* Strict viewport confinement forces contents to stay exactly centered */
+  height: 100dvh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  overflow-x: hidden;
+
+  overflow: hidden;
   position: relative;
+  padding: 1rem;
 }
 
-/* Original Ambient Background Blur Orbs Layer */
+/* Original Ambient Background Blur Orbs Layer - Adjusted to Hug Card Edges */
 .ambient-layer {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.45; /* Slightly increased opacity for a richer edge glow effect */
   pointer-events: none;
 }
 
 @keyframes floatAnimation {
   0% {
     transform: translateY(0px) translateX(0px);
-    opacity: 0.2;
+    opacity: 0.3;
   }
   50% {
-    transform: translateY(-20px) translateX(10px);
-    opacity: 0.5;
+    transform: translateY(-12px) translateX(6px);
+    opacity: 0.6;
   }
   100% {
     transform: translateY(0px) translateX(0px);
-    opacity: 0.2;
+    opacity: 0.3;
   }
 }
 
@@ -54,54 +59,83 @@ body {
   background: radial-gradient(
     circle,
     rgba(6, 182, 212, 0.8) 0%,
-    rgba(0, 0, 0, 0) 70%
+    rgba(0, 0, 0, 0) 65%
   );
   border-radius: 50%;
 }
 
+/* Positioned tightly relative to the center 380px card boundary */
 .node-1 {
-  width: 16rem;
-  height: 16rem;
-  top: 3rem;
-  left: -5rem;
-  animation: floatAnimation 8s infinite ease-in-out;
+  width: 14rem;
+  height: 14rem;
+  top: calc(50% - 15rem);
+  left: calc(50% - 12rem);
+  animation: floatAnimation 7s infinite ease-in-out;
 }
 .node-2 {
-  width: 20rem;
-  height: 20rem;
-  top: 45%;
-  right: -8rem;
-  animation: floatAnimation 12s infinite ease-in-out 2s;
+  width: 16rem;
+  height: 16rem;
+  top: calc(50% - 4rem);
+  right: calc(50% - 13rem);
+  animation: floatAnimation 10s infinite ease-in-out 1.5s;
 }
 .node-3 {
-  width: 18rem;
-  height: 18rem;
-  bottom: 5rem;
-  left: 20%;
-  animation: floatAnimation 10s infinite ease-in-out 1s;
+  width: 14rem;
+  height: 14rem;
+  bottom: calc(50% - 16rem);
+  left: calc(50% - 8rem);
+  animation: floatAnimation 9s infinite ease-in-out 0.5s;
 }
 
-/* Main Card Glassmorphic Shell Frame Container */
-main {
+/* 3D Perspective Viewport Frame Blueprint */
+.card-viewport {
+  perspective: 1200px;
   width: 100%;
-  max-width: 410px;
-  margin: auto;
-  padding: 0 1rem;
+  max-width: 380px;
   position: relative;
   z-index: 10;
-  flex-grow: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
+
+/* Rotating Transition Core Axis Engine */
+.card-flipper {
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Activated State Flip Rotation Rule */
+.card-flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Dual Side Alignment Planes */
+.card-front,
+.card-back {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Absolute Backside Placement Formula */
+.card-back {
+  position: relative; /* Let back panel hold space height dynamically */
+  transform: rotateY(180deg);
 }
 
 .card-body {
   width: 100%;
   background-color: rgba(23, 23, 23, 0.85);
   border: 1px solid #262626;
-  border-radius: 1.75rem;
-  padding: 1.5rem;
+  border-radius: 1.5rem;
+  padding: 1.5rem 1.25rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -110,20 +144,20 @@ main {
   align-items: center;
 }
 
-/* Profile & Headings Typography Header */
+/* Branding Typography Layout Header */
 .brand-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   width: 100%;
 }
 
 .logo-box {
-  width: 128px;
-  height: 128px;
-  margin-bottom: 1rem;
+  width: 110px;
+  height: 110px;
+  margin-bottom: 0.85rem;
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
@@ -136,50 +170,73 @@ main {
   object-fit: cover;
 }
 
+.mini-logo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.5rem;
+}
+
 h1 {
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  letter-spacing: 0.075em;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   color: #ffffff;
 }
 
 .subtitle {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: #22d3ee;
   text-transform: uppercase;
   margin-top: 0.25rem;
 }
 
 .author {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #a3a3a3;
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   display: flex;
   align-items: center;
   gap: 0.4rem;
 }
 
-/* Interactive Card Profile Action Buttons Layout */
+/* Button Trigger Matrices */
 .button-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
   width: 100%;
 }
 
 button {
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.85rem 1rem;
+  font-size: 0.8rem;
+  padding: 0.75rem 0.85rem;
   border-radius: 0.75rem;
   cursor: pointer;
   border: none;
   width: 100%;
   transition: all 0.2s ease;
+}
+
+.footer {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #525252;
+  text-align: center;
+  margin-top: 1.25rem;
+  position: relative;
+  top: 14%;
 }
 
 .btn-primary {
@@ -200,21 +257,21 @@ button {
   background-color: #3f3f46;
 }
 
-/* Technology Expertise Framework Highlights */
+/* Tech Segment Highlights */
 .tech-section {
   border-top: 1px solid rgba(38, 38, 38, 0.6);
-  padding-top: 1.25rem;
-  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  margin-bottom: 1.25rem;
   width: 100%;
 }
 
 .section-title {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: #525252;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
   text-align: center;
 }
 
@@ -222,15 +279,15 @@ button {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .badge {
   background-color: #0a0a0a;
   border: 1px solid #262626;
   border-radius: 0.5rem;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.7rem;
   font-weight: 500;
   color: #d4d4d4;
   display: flex;
@@ -238,10 +295,9 @@ button {
   gap: 0.4rem;
 }
 
-/* Symmetrical Badge Neon Status Glowing Dots */
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
 }
 .dot-react {
@@ -257,11 +313,11 @@ button {
   box-shadow: 0 0 8px #a855f7;
 }
 
-/* Contact Row Lists Navigation Layout */
+/* Contact Link Navigation Rows */
 .links-section {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
   width: 100%;
 }
 
@@ -269,7 +325,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem;
+  padding: 0.75rem;
   background-color: rgba(10, 10, 10, 0.6);
   border: 1px solid #262626;
   border-radius: 0.75rem;
@@ -287,14 +343,14 @@ button {
 .row-layout {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   width: 100%;
+  overflow: hidden;
 }
 
-/* Clean Box Indicators for Links */
 .icon-wrap {
-  width: 45px;
-  height: 36px;
+  width: 42px;
+  height: 32px;
   background-color: #171717;
   border: 1px solid #262626;
   border-radius: 0.5rem;
@@ -303,10 +359,9 @@ button {
   justify-content: center;
   flex-shrink: 0;
   font-weight: 700;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: #a3a3a3;
   letter-spacing: 0.05em;
-  transition: color 0.2s ease;
 }
 .contact-row:hover .icon-wrap {
   color: #22d3ee;
@@ -320,15 +375,14 @@ button {
 }
 
 .label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   color: #525252;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 .value {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #d4d4d4;
   white-space: nowrap;
@@ -337,9 +391,8 @@ button {
 }
 
 .chevron {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: #404040;
-  margin-left: 0.5rem;
   transition:
     transform 0.2s ease,
     color 0.2s ease;
@@ -350,12 +403,92 @@ button {
 }
 
 footer {
+  font-size: 0.7rem;
+  color: #525252;
   text-align: center;
-  font-size: 10px;
-  color: #404040;
-  padding: 1.5rem 0;
-  letter-spacing: 0.05em;
-  position: relative;
-  z-index: 10;
+  margin-top: 1.25rem;
   width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+/* Card Back Side Specific Layout Rules */
+.back-content {
+  justify-content: space-between;
+  min-height: 480px;
+}
+
+.qr-container-box {
+  background-color: #ffffff;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170px;
+  height: 170px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.qr-container-box img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.qr-instructions {
+  font-size: 0.75rem;
+  color: #a3a3a3;
+  text-align: center;
+  max-width: 250px;
+  line-height: 1.4;
+  margin: 0.75rem 0;
+}
+
+.return-btn {
+  max-width: 180px;
+}
+
+/* Special Layout Scale Fix For Extra Small Phone Screens */
+@media (max-width: 340px) {
+  .card-body {
+    padding: 1rem 0.85rem;
+  }
+  h1 {
+    font-size: 1.2rem;
+  }
+  .value {
+    font-size: 0.75rem;
+  }
+  .logo-box {
+    width: 96px;
+    height: 96px;
+  }
+  .back-content {
+    min-height: 440px;
+  }
+  .qr-container-box {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* Special Layout Scale Fix For Landscape Orientations or Short Viewports */
+@media (max-height: 540px) {
+  body {
+    overflow-y: auto;
+    height: auto;
+    padding: 2rem 1rem;
+  }
+  .card-front,
+  .card-back {
+    position: relative;
+    top: 0;
+    transform: none;
+  }
+  .card-back {
+    transform: rotateY(180deg);
+  }
 }

@@ -8,7 +8,16 @@ const contactData = {
     github: "https://github.com"
 };
 
-function saveContact() {
+// 3D Flip Mechanics Axis Animation Trigger Control
+function flipCard(event) {
+    if (event) event.preventDefault();
+    const flipper = document.getElementById('cardFlipper');
+    flipper.classList.toggle('flipped');
+}
+
+// Global VCard Compilation logic for Contacts Hub Integration
+function saveContact(event) {
+    if (event) event.stopPropagation();
     const vcard = [
         "BEGIN:VCARD",
         "VERSION:3.0",
